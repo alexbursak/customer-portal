@@ -2,12 +2,12 @@ security:
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        AB\CustomerPortalBundle\Entity\User: plaintext
+        AB\CustomerPortalBundle\Entity\Customer: plaintext
 
     providers:
         db_provider:
             entity:
-                class: CustomerPortalBundle:User
+                class: CustomerPortalBundle:Customer
                 property: username
 
     firewalls:
@@ -21,7 +21,7 @@ security:
             form_login:
                 login_path: secutity.login
                 check_path: secutity.login
-                default_target_path: portal.admin
+                default_target_path: portal.portal
 
             pattern: ^/
             provider: db_provider

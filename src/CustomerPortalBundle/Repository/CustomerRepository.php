@@ -1,11 +1,12 @@
 <?php
 
 namespace AB\CustomerPortalBundle\Repository;
+
 use Doctrine\ORM\EntityRepository;
 
 /**
- * UserRepository
+ * CustomerRepository
  */
-class UserRepository extends EntityRepository
+class CustomerRepository extends EntityRepository
 {
 }

@@ -7,9 +7,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
- *
- * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="AB\CustomerPortalBundle\Repository\UserRepository")
  */
 class User implements UserInterface, \Serializable
 {
@@ -18,52 +15,60 @@ class User implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
      */
-    private $username;
+    protected $username;
 
     /**
      * @ORM\Column(type="string", length=64)
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $isActive;
+    protected $isActive;
 
     public function __construct()
     {
         $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
     }
 
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
+    /**
+     * @return null
+     */
     public function getSalt()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
         return null;
     }
 
+    /**
+     * @return mixed
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * @return array
+     */
     public function getRoles()
     {
         return array('ROLE_USER');
@@ -79,9 +84,7 @@ class User implements UserInterface, \Serializable
         return serialize(array(
             $this->id,
             $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
+            $this->password
         ));
     }
 
@@ -91,15 +94,11 @@ class User implements UserInterface, \Serializable
         list (
             $this->id,
             $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
+            $this->password
             ) = unserialize($serialized);
     }
 
     /**
-     * Get id
-     *
      * @return integer
      */
     public function getId()
@@ -108,10 +107,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set username
-     *
      * @param string $username
-     *
      * @return User
      */
     public function setUsername($username)
@@ -122,10 +118,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set password
-     *
      * @param string $password
-     *
      * @return User
      */
     public function setPassword($password)
@@ -136,10 +129,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set email
-     *
      * @param string $email
-     *
      * @return User
      */
     public function setEmail($email)
@@ -150,8 +140,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get email
-     *
      * @return string
      */
     public function getEmail()
@@ -160,10 +148,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set isActive
-     *
      * @param boolean $isActive
-     *
      * @return User
      */
     public function setIsActive($isActive)
@@ -174,8 +159,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get isActive
-     *
      * @return boolean
      */
     public function getIsActive()
