@@ -33,9 +33,16 @@ class Customer extends User
      */
     private $country;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AB\CustomerPortalBundle\Entity\Passenger", mappedBy="customer")
+     */
+    private $passengers;
+
     public function __construct()
     {
         parent::__construct();
+
+        $this->passengers = new ArrayCollection();
     }
 
     public function getName()
@@ -86,4 +93,31 @@ class Customer extends User
         return $this;
     }
 
+    /**
+     * @param Passenger $passenger
+     *
+     * @return Customer
+     */
+    public function addPassenger(Passenger $passenger)
+    {
+        $this->passengers[] = $passenger;
+
+        return $this;
+    }
+
+    /**
+     * @param Passenger $passenger
+     */
+    public function removePassenger(Passenger $passenger)
+    {
+        $this->passengers->removeElement($passenger);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPassengers()
+    {
+        return $this->passengers->getValues();
+    }
 }

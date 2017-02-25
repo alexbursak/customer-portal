@@ -95,8 +95,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get id
-     *
      * @return integer
      */
     public function getId()
@@ -105,8 +103,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set username
-     *
      * @param string $username
      *
      * @return User
@@ -119,8 +115,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set password
-     *
      * @param string $password
      *
      * @return User
@@ -133,8 +127,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set email
-     *
      * @param string $email
      *
      * @return User
@@ -147,8 +139,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get email
-     *
      * @return string
      */
     public function getEmail()
@@ -157,8 +147,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set isActive
-     *
      * @param boolean $isActive
      *
      * @return User
@@ -171,8 +159,6 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get isActive
-     *
      * @return boolean
      */
     public function getIsActive()
