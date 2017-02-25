@@ -2,6 +2,7 @@
 
 namespace AB\CustomerPortalBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,6 +55,17 @@ class Passenger
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     private $customer;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AB\CustomerPortalBundle\Entity\Trip", inversedBy="passengers")
+     * @ORM\JoinTable(name="passenger_trip")
+     */
+    private $trips;
+
+    public function __construct()
+    {
+        $this->trips = new ArrayCollection();
+    }
 
 
     /**
@@ -145,11 +157,11 @@ class Passenger
     }
 
     /**
-     * @param string $customer
+     * @param Customer $customer
      *
      * @return Passenger
      */
-    public function setCustomer($customer)
+    public function setCustomer(Customer $customer)
     {
         $this->customer = $customer;
 
@@ -162,6 +174,34 @@ class Passenger
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * @param Trip $trip
+     *
+     * @return Passenger
+     */
+    public function addTrip(Trip $trip)
+    {
+        $this->trips[] = $trip;
+
+        return $this;
+    }
+
+    /**
+     * @param Trip $trip
+     */
+    public function removeTrip(Trip $trip)
+    {
+        $this->trips->removeElement($trip);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTrips()
+    {
+        return $this->trips->getValues();
     }
 }
 

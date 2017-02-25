@@ -38,11 +38,25 @@ class Customer extends User
      */
     private $passengers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AB\CustomerPortalBundle\Entity\Trip", mappedBy="customer")
+     */
+    private $trips;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->passengers = new ArrayCollection();
+        $this->trips = new ArrayCollection();
+    }
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getName()
@@ -119,5 +133,33 @@ class Customer extends User
     public function getPassengers()
     {
         return $this->passengers->getValues();
+    }
+
+    /**
+     * @param Trip $trip
+     *
+     * @return Customer
+     */
+    public function addTrip(Trip $trip)
+    {
+        $this->trips[] = $trip;
+
+        return $this;
+    }
+
+    /**
+     * @param Trip $trip
+     */
+    public function removeTrip(Trip $trip)
+    {
+        $this->trips->removeElement($trip);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTrips()
+    {
+        return $this->trips->getValues();
     }
 }
