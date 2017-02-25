@@ -40,27 +40,35 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
     }
 
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
+    /**
+     * @return null
+     */
     public function getSalt()
     {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
         return null;
     }
 
+    /**
+     * @return mixed
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * @return array
+     */
     public function getRoles()
     {
         return array('ROLE_USER');
@@ -76,9 +84,7 @@ class User implements UserInterface, \Serializable
         return serialize(array(
             $this->id,
             $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
+            $this->password
         ));
     }
 
@@ -88,9 +94,7 @@ class User implements UserInterface, \Serializable
         list (
             $this->id,
             $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
+            $this->password
             ) = unserialize($serialized);
     }
 
@@ -104,7 +108,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $username
-     *
      * @return User
      */
     public function setUsername($username)
@@ -116,7 +119,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $password
-     *
      * @return User
      */
     public function setPassword($password)
@@ -128,7 +130,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $email
-     *
      * @return User
      */
     public function setEmail($email)
@@ -148,7 +149,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param boolean $isActive
-     *
      * @return User
      */
     public function setIsActive($isActive)

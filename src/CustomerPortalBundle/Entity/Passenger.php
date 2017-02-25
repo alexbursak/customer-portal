@@ -78,7 +78,6 @@ class Passenger
 
     /**
      * @param string $title
-     *
      * @return Passenger
      */
     public function setTitle($title)
@@ -98,7 +97,6 @@ class Passenger
 
     /**
      * @param string $name
-     *
      * @return Passenger
      */
     public function setName($name)
@@ -138,7 +136,6 @@ class Passenger
 
     /**
      * @param string $passportID
-     *
      * @return Passenger
      */
     public function setPassportID($passportID)
@@ -158,7 +155,6 @@ class Passenger
 
     /**
      * @param Customer $customer
-     *
      * @return Passenger
      */
     public function setCustomer(Customer $customer)
@@ -178,7 +174,6 @@ class Passenger
 
     /**
      * @param Trip $trip
-     *
      * @return Passenger
      */
     public function addTrip(Trip $trip)

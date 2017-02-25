@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * User
+ * Customer
  *
  * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AB\CustomerPortalBundle\Repository\CustomerRepository")
@@ -59,11 +59,18 @@ class Customer extends User
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @param string $name
+     * @return Customer
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -71,11 +78,18 @@ class Customer extends User
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getAddress()
     {
         return $this->address;
     }
 
+    /**
+     * @param string $address
+     * @return Customer
+     */
     public function setAddress($address)
     {
         $this->address = $address;
@@ -83,11 +97,18 @@ class Customer extends User
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getCity()
     {
         return $this->city;
     }
 
+    /**
+     * @param string $city
+     * @return Customer
+     */
     public function setCity($city)
     {
         $this->city = $city;
@@ -95,11 +116,18 @@ class Customer extends User
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getCountry()
     {
         return $this->country;
     }
 
+    /**
+     * @param string $country
+     * @return Customer
+     */
     public function setCountry($country)
     {
         $this->country = $country;
@@ -109,7 +137,6 @@ class Customer extends User
 
     /**
      * @param Passenger $passenger
-     *
      * @return Customer
      */
     public function addPassenger(Passenger $passenger)
@@ -137,7 +164,6 @@ class Customer extends User
 
     /**
      * @param Trip $trip
-     *
      * @return Customer
      */
     public function addTrip(Trip $trip)

@@ -67,8 +67,6 @@ class Trip
     }
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -77,10 +75,7 @@ class Trip
     }
 
     /**
-     * Set flyFrom
-     *
      * @param string $flyFrom
-     *
      * @return Trip
      */
     public function setFlyFrom($flyFrom)
@@ -91,8 +86,6 @@ class Trip
     }
 
     /**
-     * Get flyFrom
-     *
      * @return string
      */
     public function getFlyFrom()
@@ -101,10 +94,7 @@ class Trip
     }
 
     /**
-     * Set flyTo
-     *
      * @param string $flyTo
-     *
      * @return Trip
      */
     public function setFlyTo($flyTo)
@@ -115,8 +105,6 @@ class Trip
     }
 
     /**
-     * Get flyTo
-     *
      * @return string
      */
     public function getFlyTo()
@@ -125,10 +113,7 @@ class Trip
     }
 
     /**
-     * Set departure
-     *
      * @param \DateTime $departure
-     *
      * @return Trip
      */
     public function setDeparture($departure)
@@ -139,8 +124,6 @@ class Trip
     }
 
     /**
-     * Get departure
-     *
      * @return \DateTime
      */
     public function getDeparture()
@@ -149,10 +132,7 @@ class Trip
     }
 
     /**
-     * Set arrival
-     *
      * @param \DateTime $arrival
-     *
      * @return Trip
      */
     public function setArrival($arrival)
@@ -163,8 +143,6 @@ class Trip
     }
 
     /**
-     * Get arrival
-     *
      * @return \DateTime
      */
     public function getArrival()
@@ -174,7 +152,6 @@ class Trip
 
     /**
      * @param Passenger $passenger
-     *
      * @return Trip
      */
     public function addPassenger(Passenger $passenger)
@@ -202,7 +179,6 @@ class Trip
 
     /**
      * @param Customer $customer
-     *
      * @return Trip
      */
     public function setCustomer(Customer $customer)
