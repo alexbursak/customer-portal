@@ -1,18 +1,17 @@
 <?php
 
-namespace AB\CustomerPortalTests\AppBundle\Controller;
+namespace AB\CustomerPortalBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class PortalControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testApplicationIndexPageResponse()
     {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
     }
 }
