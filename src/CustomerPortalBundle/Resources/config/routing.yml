@@ -2,7 +2,7 @@ portal.index:
     path:     /
     defaults: { _controller: CustomerPortalBundle:Portal:index }
 
-portal.admin:
+portal.portal:
     path:     /portal
     defaults: { _controller: CustomerPortalBundle:Portal:portal }
 

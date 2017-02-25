@@ -2,6 +2,7 @@
 
 namespace AB\CustomerPortalBundle\Controller;
 
+use AB\CustomerPortalBundle\Entity\Customer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class PortalController extends Controller
@@ -13,6 +14,12 @@ class PortalController extends Controller
 
     public function portalAction()
     {
-        return $this->render('CustomerPortalBundle:Portal:portal.html.twig');
+//        $customer = $this->get('security.token_storage')->getToken()->getUser();
+
+        $customer = new Customer();
+
+        return $this->render('CustomerPortalBundle:Portal:portal.html.twig', [
+            'customer' => $customer
+        ]);
     }
 }

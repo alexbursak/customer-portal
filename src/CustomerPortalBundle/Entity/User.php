@@ -7,9 +7,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
- *
- * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="AB\CustomerPortalBundle\Repository\UserRepository")
  */
 class User implements UserInterface, \Serializable
 {
@@ -18,27 +15,27 @@ class User implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
      */
-    private $username;
+    protected $username;
 
     /**
      * @ORM\Column(type="string", length=64)
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $isActive;
+    protected $isActive;
 
     public function __construct()
     {
