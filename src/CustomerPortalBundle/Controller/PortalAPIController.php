@@ -11,6 +11,25 @@ use Symfony\Component\HttpFoundation\Request;
 class PortalAPIController extends Controller
 {
     /**
+     * @return JsonResponse $response
+     */
+    public function getCustomerAction()
+    {
+        $customer = $this->get('security.token_storage')
+            ->getToken()
+            ->getUser();
+
+        $response['id'] = $customer->getId();
+        $response['username'] = $customer->getUsername();
+        $response['name'] = $customer->getName();
+        $response['address'] = $customer->getAddress();
+        $response['city'] = $customer->getCity();
+        $response['country'] = $customer->getCountry();
+
+        return new JsonResponse((object)$response);
+    }
+
+    /**
      * @return JsonResponse - Collection of Passengers
      */
     public function getPassengersAction()
