@@ -1,0 +1,14 @@
+portal.index:
+    path:     /
+    defaults: { _controller: CustomerPortalBundle:Portal:index }
+
+portal.portal:
+    path:     /portal
+    defaults: { _controller: CustomerPortalBundle:Portal:portal }
+
+secutity.login:
+    path:     /login
+    defaults: { _controller: CustomerPortalBundle:Security:login }
+
+secutity.logout:
+    path:     /logout
