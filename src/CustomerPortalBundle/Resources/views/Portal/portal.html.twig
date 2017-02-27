@@ -1,3 +1,65 @@
-Portal
+<!DOCTYPE html>
+<html>
+<head>
+
+    {% stylesheets '@CustomerPortalBundle/Resources/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            Customer.getCustomerInfo();
+
+        });
+    </script>
+</head>
+<body>
+<h2>Portal</h2>
 <br>
 <a href="{{ path('secutity.logout') }}">Logout</a>
+<br><br>
+
+{# Customer Info #}
+<br>
+<table class="table" style="width: 500px;">
+    <caption>Customer Info</caption>
+    <tbody>
+    <tr>
+        <th scope="row">Name</th>
+        <td id="customerName"></td>
+    </tr>
+    <tr>
+        <th scope="row">Address</th>
+        <td id="customerAddress"></td>
+    </tr>
+    <tr>
+        <th scope="row">City</th>
+        <td id="customerCity"></td>
+    </tr>
+    <tr>
+        <th scope="row">Country</th>
+        <td id="customerCountry"></td>
+    </tr>
+    </tbody>
+</table>
+
+{% block javascripts %}
+    {% javascripts '@CustomerPortalBundle/Resources/public/js/*' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+</body>
+</html>
