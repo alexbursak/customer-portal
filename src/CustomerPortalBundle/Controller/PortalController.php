@@ -21,9 +21,11 @@ class PortalController extends Controller
     public function portalAction()
     {
         $customer = $this->get('security.token_storage')->getToken()->getUser();
+        $passengers = $customer->getPassengers();
 
         return $this->render('CustomerPortalBundle:Portal:portal.html.twig', [
-            'customer' => $customer
+            'customer' => $customer,
+            'passengers' => $passengers
         ]);
     }
 }

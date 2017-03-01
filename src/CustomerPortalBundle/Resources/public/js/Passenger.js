@@ -1,19 +1,25 @@
-function getPassengersList(clear) {
+var Passenger = {
+    passengerInfoTableID: '#passengerInfoTable tbody',
+    customerModalID: '#CustomerModal',
+    CustomerModalFormID: '#CustomerModalForm'
+};
+
+Passenger.getPassengersList = function (clear) {
 
     clear = typeof clear !== 'undefined' ? clear : true;
 
     if (clear) {
-        $("#passengerInfoTable tbody").empty();
+        $(Passenger.passengerInfoTableID).empty();
     }
 
-    callAjaxGET('/portal/get-passengers.ajax', fetchPassengersData);
-}
+    callAjaxGET('/portal/get-passengers.ajax', Passenger.fetchPassengersData);
+};
 
-function fetchPassengersData(data) {
+Passenger.fetchPassengersData = function (data) {
 
     for (var i = 0; i < data.length; i++) {
 
-        var btn = '<input onclick="delPassenger(' + data[i].id + ')" id="deleteCustomer" type="submit" value="X">';
+        var btn = '<input onclick="Passenger.delPassenger(' + data[i].id + ')" id="deleteCustomer" type="submit" value="X">';
 
         var element = document.createElement("tr");
         element.setAttribute('passengerID', data[i].id);
@@ -23,11 +29,11 @@ function fetchPassengersData(data) {
         $(element).append('<td>' + data[i].passportID + '</td>');
         $(element).append('<td>' + btn + '</td>');
 
-        $("#passengerInfoTable tbody").append(element);
+        $(Passenger.passengerInfoTableID).append(element);
     }
-}
+};
 
-function getPassengerFormData() {
+Passenger.getPassengerFormData = function () {
     var passengerData = {};
 
     passengerData.title = $('#title').val();
@@ -36,30 +42,32 @@ function getPassengerFormData() {
     passengerData.passportID = $('#passportID').val();
 
     return passengerData;
-}
+};
 
-function addPassenger(passengerData) {
+Passenger.addPassenger = function (passengerData) {
 
-    $('#CustomerModal').hide();
+    $(Passenger.customerModalID).hide();
 
-    callAjaxPOST('/portal/add-passenger.ajax', JSON.stringify(passengerData), getPassengersList);
-}
+    callAjaxPOST('/portal/add-passenger.ajax', JSON.stringify(passengerData), Passenger.getPassengersList);
 
-function delPassenger(passengerID) {
+    $(Passenger.CustomerModalFormID).trigger("reset");
+};
+
+Passenger.delPassenger = function (passengerID) {
 
     var url = '/portal/del-passenger.ajax/' + passengerID;
 
-    callAjaxDELETE(url, removePassengerRow(passengerID));
-}
+    callAjaxDELETE(url, Passenger.removePassengerRow(passengerID));
+};
 
-function removePassengerRow(passengerID) {
+Passenger.removePassengerRow = function (passengerID) {
     $("tr[passengerID='" + passengerID + "']").remove();
-}
+};
 
-function showPassengerModal() {
-    $('#CustomerModal').show();
-}
+Passenger.showPassengerModal = function () {
+    $(Passenger.customerModalID).show();
+};
 
-function hidePassengerModal(){
-    $('#CustomerModal').hide();
-}
+Passenger.hidePassengerModal = function () {
+    $(Passenger.customerModalID).hide();
+};

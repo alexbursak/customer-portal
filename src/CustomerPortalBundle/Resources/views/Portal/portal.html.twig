@@ -20,14 +20,14 @@
     <script>
         $(document).ready(function () {
 
-            Customer.getCustomerInfo();
-
-            getPassengersList(false);
+//            Customer.getCustomerInfo();
+//
+//            Passenger.getPassengersList(false);
 
             $('#addPassenger').click(function (e) {
 
-                var passengerData = getPassengerFormData();
-                addPassenger(passengerData);
+                var passengerData = Passenger.getPassengerFormData();
+                Passenger.addPassenger(passengerData);
 
                 e.stopImmediatePropagation();
                 e.preventDefault();
@@ -52,19 +52,19 @@
     <tbody>
     <tr>
         <th scope="row">Name</th>
-        <td id="customerName"></td>
+        <td id="customerName">{{ customer.name }}</td>
     </tr>
     <tr>
         <th scope="row">Address</th>
-        <td id="customerAddress"></td>
+        <td id="customerAddress">{{ customer.address }}</td>
     </tr>
     <tr>
         <th scope="row">City</th>
-        <td id="customerCity"></td>
+        <td id="customerCity">{{ customer.city }}</td>
     </tr>
     <tr>
         <th scope="row">Country</th>
-        <td id="customerCountry"></td>
+        <td id="customerCountry">{{ customer.country }}</td>
     </tr>
     </tbody>
 </table>
@@ -83,22 +83,39 @@
         </tr>
         </thead>
         <tbody>
+
+        {% for passenger in passengers %}
+            <tr passengerID="{{ passenger.id }}">
+                <td>{{ passenger.title }}</td>
+                <td>{{ passenger.name }}</td>
+                <td>{{ passenger.surname }}</td>
+                <td>{{ passenger.passportID }}</td>
+                <td>
+                    <input onclick="Passenger.delPassenger({{ passenger.id }})"
+                           id="deleteCustomer"
+                           type="submit"
+                           value="X">
+                </td>
+            </tr>
+        {% endfor %}
+
         </tbody>
     </table>
-    <button onclick="showPassengerModal()" id="passengerModal">Add Passenger</button>
-</div><br><br><br><br><br>
+    <button onclick="Passenger.showPassengerModal()" id="passengerModal">Add Passenger</button>
+</div>
+<br><br><br><br><br>
 
 
 <div id="CustomerModal" class="modal">
 
     <div class="modal-content">
         <div class="modal-header" style="height: 30px; padding: 3px;">
-            <span onclick="hidePassengerModal()" class="close">&times;</span>
+            <span onclick="Passenger.hidePassengerModal()" class="close">&times;</span>
         </div>
 
         <div class="modal-body">
 
-            <form action="#" id="form">
+            <form action="#" id="CustomerModalForm">
                 Title:<br>
                 <input id="title" type="text" name="title">
                 <br><br>
