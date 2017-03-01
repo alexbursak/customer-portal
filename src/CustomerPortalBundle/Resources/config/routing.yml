@@ -12,3 +12,23 @@ secutity.login:
 
 secutity.logout:
     path:     /logout
+
+portal.ajax.get-customer:
+    path:     /portal/get-customer.ajax
+    defaults: { _controller: CustomerPortalBundle:PortalAPI:getCustomer }
+    methods: GET
+
+portal.ajax.get-passengers:
+    path:     /portal/get-passengers.ajax
+    defaults: { _controller: CustomerPortalBundle:PortalAPI:getPassengers }
+    methods: GET
+
+portal.ajax.add-passenger:
+    path:     /portal/add-passenger.ajax
+    defaults: { _controller: CustomerPortalBundle:PortalAPI:addPassenger }
+    methods: POST
+
+portal.ajax.del-passenger:
+    path:     /portal/del-passenger.ajax/{id}
+    defaults: { _controller: CustomerPortalBundle:PortalAPI:delPassenger }
+    methods: DELETE

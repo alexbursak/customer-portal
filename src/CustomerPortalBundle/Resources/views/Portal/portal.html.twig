@@ -1,3 +1,146 @@
-Portal
+<!DOCTYPE html>
+<html>
+<head>
+
+    {% stylesheets '@CustomerPortalBundle/Resources/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous">
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+//            Customer.getCustomerInfo();
+//
+//            Passenger.getPassengersList(false);
+
+            $('#addPassenger').click(function (e) {
+
+                var passengerData = Passenger.getPassengerFormData();
+                Passenger.addPassenger(passengerData);
+
+                e.stopImmediatePropagation();
+                e.preventDefault();
+            });
+
+        });
+    </script>
+</head>
+<body>
+<h2>Portal</h2>
 <br>
 <a href="{{ path('secutity.logout') }}">Logout</a>
+<br><br>
+
+<!-- Trigger/Open The Modal -->
+
+
+{# Customer Info #}
+<br>
+<table class="table" style="width: 500px;">
+    <caption>Customer Info</caption>
+    <tbody>
+    <tr>
+        <th scope="row">Name</th>
+        <td id="customerName">{{ customer.name }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Address</th>
+        <td id="customerAddress">{{ customer.address }}</td>
+    </tr>
+    <tr>
+        <th scope="row">City</th>
+        <td id="customerCity">{{ customer.city }}</td>
+    </tr>
+    <tr>
+        <th scope="row">Country</th>
+        <td id="customerCountry">{{ customer.country }}</td>
+    </tr>
+    </tbody>
+</table>
+
+{# Passenger Info #}
+<div id="passengerInfo">
+    <table id="passengerInfoTable" class="table" style="width: 800px;">
+        <caption>Passenger Info</caption>
+        <thead class="thead-default">
+        <tr>
+            <th>Title</th>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Passport ID</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for passenger in passengers %}
+            <tr passengerID="{{ passenger.id }}">
+                <td>{{ passenger.title }}</td>
+                <td>{{ passenger.name }}</td>
+                <td>{{ passenger.surname }}</td>
+                <td>{{ passenger.passportID }}</td>
+                <td>
+                    <input onclick="Passenger.delPassenger({{ passenger.id }})"
+                           id="deleteCustomer"
+                           type="submit"
+                           value="X">
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <button onclick="Passenger.showPassengerModal()" id="passengerModal">Add Passenger</button>
+</div>
+<br><br><br><br><br>
+
+
+<div id="CustomerModal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header" style="height: 30px; padding: 3px;">
+            <span onclick="Passenger.hidePassengerModal()" class="close">&times;</span>
+        </div>
+
+        <div class="modal-body">
+
+            <form action="#" id="CustomerModalForm">
+                Title:<br>
+                <input id="title" type="text" name="title">
+                <br><br>
+                Name:<br>
+                <input id="name" type="text" name="name">
+                <br><br>
+                Surname:<br>
+                <input id="surname" type="text" name="surname">
+                <br><br>
+                Passport ID:<br>
+                <input id="passportID" type="text" name="passportID">
+                <br><br>
+                <input id="addPassenger" type="submit" value="Submit">
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% block javascripts %}
+    {% javascripts '@CustomerPortalBundle/Resources/public/js/*' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+</body>
+</html>
